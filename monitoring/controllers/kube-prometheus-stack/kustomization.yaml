@@ -3,8 +3,10 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - namespace.yaml
-  - repository.yaml
-  - release.yaml
+  - full-stack.yaml
+  - grafana-agent-cm.yaml
+  # - repository.yaml
+  # - release.yaml
 configMapGenerator:
   - name: flux-kube-state-metrics-config
     files:

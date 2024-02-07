@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-agent
+  namespace: monitoring
+data:
+  config.river: |
+    faro.receiver "default" {
+        server {
+            listen_address = "0.0.0.0"
+            cors_allowed_origins = ["*"]
+        }
+        
+        extra_log_labels = {
+        app_name = "frontend",
+        app_environment = "dev",
+        source = "faro-sdk",
+       }
+
+        output {
+            logs = [loki.write.default.receiver]
+        }
+    }
+
+    loki.write "default" {
+        endpoint {
+            url = "http://loki:3100/loki/api/v1/push"
+        }
+    }
+
+    loki.echo "test" {}
+
