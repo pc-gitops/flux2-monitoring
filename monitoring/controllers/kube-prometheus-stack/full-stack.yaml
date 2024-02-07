@@ -86,9 +86,9 @@ spec:
     server:
       statefulSet:
         enabled: true
-      podDisruptionBudget:
-        enabled: true
-        minAvailable: 1
+      # podDisruptionBudget:
+      #   enabled: true
+      #   minAvailable: 1
       ingress:
         enabled: true
         annotations:
